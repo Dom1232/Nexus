@@ -44,7 +44,6 @@ exports.requireSignin = (req, res, next) => {
       algorithms: ["HS256"],
       userProperty: 'auth'
     });
-  
     //Handle Errors
     middleware(req, res, (err) => {
       if (err) {

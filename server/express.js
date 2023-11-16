@@ -19,8 +19,8 @@ app.get('/', (req, res) => {
 app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist/app')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/', userRoutes);
-app.use('/', authRoutes);
+app.use('/api', userRoutes);
+app.use('/auth', authRoutes);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());

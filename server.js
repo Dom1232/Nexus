@@ -3,7 +3,7 @@ const app = require('./server/express.js');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(config.mongoUri);
 
 mongoose.connection.on('connected', () => {
   console.log('Connected to MongoDB');
