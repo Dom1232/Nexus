@@ -12,7 +12,7 @@ exports.signIn = async (req, res) => {
       const user = await User.findOne({ email });  
       // Check if the user exists
       if (!user) {
-        return res.status(401).json({ message: 'User not Found' });
+        return res.status(401).json({ message: 'User Does not Exist' });
       }
       // Compare password with  hashed password
       const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -22,7 +22,7 @@ exports.signIn = async (req, res) => {
       }
       //Create token
       const token = jwt.sign({ _id: user._id }, config.jwtSecret) 
-      res.cookie('t', token, { expire: new Date() + 9999 }) 
+      res.cookie('k', token, { expire: new Date() + 9999 }) 
       return res.json({
         token, 
         user: {
@@ -58,9 +58,9 @@ exports.requireSignin = (req, res, next) => {
 }
 
 exports.signOut = (req, res) => {
-  res.clearCookie("t");
+  res.clearCookie("k");
   return res.status(200).json({
-    message: "signed out"
+    message: "You have been signed out"
   });
 };
 
@@ -68,7 +68,7 @@ exports.isAuthorized = (req, res, next) => {
     const authorized = req.params.userId === req.auth._id;
     if (!authorized) {
       return res.status(403).json({
-        error: "User is not authorized"
+        error: "Only the owner of the account may do that"
       });
     }
     next();
