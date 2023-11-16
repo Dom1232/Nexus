@@ -4,10 +4,11 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import logoImg from './../assets/images/logo.png';
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    maxWidth: 600,
+    maxWidth: 980,
     margin: 'auto',
     marginTop: theme.spacing(5),
   },
@@ -17,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     minHeight: 400,
+    width: 300,
+    margin: 'auto',
   },
 }));
 
@@ -25,10 +28,9 @@ function Home() {
 
   return (
     <Card className={classes.card}>
-      <Typography variant="h6" className={classes.title}>
-        Home Page
-      </Typography>
-      <CardMedia className={classes.media} />
+      <Typography variant="h6" className={classes.title}>Home Page</Typography>
+      <CardMedia className={classes.media}
+      image={logoImg} title="Nexus Logo"/>
       <CardContent>
         <Typography variant="body2" component="p">
           Welcome to the Nexus Home Page

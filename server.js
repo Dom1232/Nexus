@@ -14,7 +14,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to User application." });
+  res.json({ message: "Welcome to Nexus." });
 });
 
 app.listen(config.port, (err) => {

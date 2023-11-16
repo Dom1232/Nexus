@@ -1,26 +1,31 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const submitForm = async () => {
-    const response = await fetch('https://your-server-domain/auth/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await fetch('https://localhost:3000/auth/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const result = await response.json();
-    console.log(result);
+      const result = await response.json();
+      console.log(result);
 
-
-    if (response.ok) {
-
-    } else {
-      alert(result.message);
+      if (response.ok) {
+        navigate('/');
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
     }
   };
 
@@ -36,7 +41,7 @@ const LoginPage = () => {
         onChange={(e) => setEmail(e.target.value)}
         required
       />
-      <br />
+      <br/>
 
       <label htmlFor="password">Password:</label>
       <input
@@ -47,7 +52,7 @@ const LoginPage = () => {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <br />
+      <br/>
 
       <button type="button" onClick={submitForm}>
         Login

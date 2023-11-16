@@ -1,15 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/styles';
 import MainRouter from '../MainRouter';
-import theme from '../theme';
+import Navbar from './components/NavBar';
 
 const App = () => {
   return (
     <Router>
-      <ThemeProvider theme={theme}>
+        <Navbar/>
         <MainRouter />
-      </ThemeProvider>
     </Router>
   );
 };
