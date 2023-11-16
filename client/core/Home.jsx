@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     minHeight: 400,
-    width: 300,
+    width: 350,
     margin: 'auto',
   },
 }));
