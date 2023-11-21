@@ -11,7 +11,7 @@ const path = require('path');
 
 const app = express();
 const CURRENT_WORKING_DIR = process.cwd();
-
+app.use(cors());
 app.get('/', (req, res) => {
   res.status(200).send(Template());
 });
@@ -19,14 +19,15 @@ app.get('/', (req, res) => {
 app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist/app')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', userRoutes);
-app.use('/auth', authRoutes);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(compress());
 app.use(helmet());
-app.use(cors());
+
+app.use('/api', userRoutes);
+app.use('/auth', authRoutes);
+
 app.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
     res.status(401).json({ "error": err.name + ": " + err.message });
