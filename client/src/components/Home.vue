@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>Nexus Social</h1>
+    <h1>Welcome to Nexus Social</h1>
   </div>
+  <img src="../assets/logo.png" alt="Nexus Logo">
 </template>
 
 
