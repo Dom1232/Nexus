@@ -36,7 +36,7 @@ export default {
         this.$apiService.createUser(this.userData)
           .then(response => {
             console.log('User created successfully:', response);
-            this.$router.push({ name: 'home' });
+            this.$router.push({ name: 'signin' });
           })
           .catch(error => {
             console.error('Error creating user:', error);
