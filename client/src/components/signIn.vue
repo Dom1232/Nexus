@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="!isAuthenticated">
         <form @submit.prevent="signIn">
             <h2>Sign In</h2>
             <label>Email:</label>
@@ -14,6 +14,12 @@
             <div v-if="signInError">Error signing in. Please check your credentials.</div>
         </form>
     </div>
+    <div v-if="isAuthenticated">
+        <h2>Successfully Signed in, Click your</h2>
+        <h2>timeline above or the logo below to enter.</h2>
+        <img src="../assets/logo.png" alt="Nexus Logo" @click="forward">
+
+    </div>
   </template>
   
 <script>
@@ -25,6 +31,7 @@ import axios from 'axios';
         email: '',
         password: '',
         signInError: null,
+        isAuthenticated: this.$auth.isAuthenticated()
     };
     },
     methods: {
@@ -44,9 +51,8 @@ import axios from 'axios';
         if (response.status === 200) {
           console.log('Sign in successful');
           localStorage.setItem('token', response.data.token);
-          //Had to use this due to the nature of other 
-          window.location.reload();
-          this.$router.push({ name: 'timeline' });
+          //Had to use this due to it not reloading the router bar properly
+          window.location.reload();    
         } else {
           console.error('Error signing in:', response.data.message);
           this.signInError = true;
@@ -56,6 +62,9 @@ import axios from 'axios';
         this.signInError = true;
       }
     },
+    async forward(){
+        this.$router.push({ name: 'timeline' });
+    }
   },
   };
 </script>
