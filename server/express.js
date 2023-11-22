@@ -11,7 +11,7 @@ const path = require('path');
 
 const app = express();
 const CURRENT_WORKING_DIR = process.cwd();
-app.use(cors());
+app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
 app.get('/', (req, res) => {
   res.status(200).send(Template());
 });
