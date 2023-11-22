@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../components/Home.vue'
 import signUp from '../components/signUp.vue'
 import signIn from '../components/signIn.vue'
+import timeLine from '../components/timeLine.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -21,6 +22,11 @@ const router = createRouter({
         name: 'signin',
         component: signIn,
       },
+      {
+        path: '/timeline',
+        name: 'timeline',
+        component: timeLine,
+      }   
     ],
 });
 

@@ -1,18 +1,31 @@
 <template>
   <div>
     <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/signup">Sign Up</router-link>
-      <router-link to="/signin">Sign In</router-link>
+      <router-link v-if="!isAuthenticated" to="/signup">Sign Up</router-link>
+      <router-link v-if="!isAuthenticated" to="/signin">Sign In</router-link>
+      <router-link v-if="isAuthenticated"  to="/" @click="clearToken">Sign Out</router-link>
+      <router-link v-if="isAuthenticated" to="/timeline">Timeline</router-link>
     </nav>
     <router-view/>
   </div>
 </template>
 
 <script>
+import auth from './api/auth-help';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      isAuthenticated: auth.isAuthenticated()
+    }
+  },
+  methods: {
+    clearToken() {
+      auth.clearToken();
+      this.isAuthenticated = auth.isAuthenticated();
+    }
+  }
 }
 </script>
 

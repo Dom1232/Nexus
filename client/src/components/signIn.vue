@@ -16,7 +16,7 @@
     </div>
   </template>
   
-  <script>
+<script>
 import axios from 'axios';
 
   export default {
@@ -44,8 +44,9 @@ import axios from 'axios';
         if (response.status === 200) {
           console.log('Sign in successful');
           localStorage.setItem('token', response.data.token);
-          console.log(localStorage.token);
-          console.log('User:', response.data.user);
+          //Had to use this due to the nature of other 
+          window.location.reload();
+          this.$router.push({ name: 'timeline' });
         } else {
           console.error('Error signing in:', response.data.message);
           this.signInError = true;
