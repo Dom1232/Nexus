@@ -10,5 +10,18 @@ export default {
       } catch(err) { 
       console.log(err)
       } 
+  },
+
+  decodeToken: async (token) => {
+    try {
+      let response = await axios.post(`${API_URL}/auth/decode`, {token}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+      return response.data;
+      } catch(err) { 
+      console.log(err)
+      } 
   }
 };

@@ -13,4 +13,18 @@ export default {
         throw error;
       }
     },
+
+    fetchProfile: async (token, id) => {
+        try {
+            const response = await axios.get(`${API_URL}/api/users/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+          return response.data;
+        } catch (error) {
+          console.error('Error creating Account:', error);
+          throw error;
+        }
+    },
 };
