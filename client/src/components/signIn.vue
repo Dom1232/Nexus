@@ -63,7 +63,7 @@ import axios from 'axios';
       }
     },
     async forward(){
-        this.$router.push({ name: 'timeline' });
+        this.$router.push({ name: 'signin' });
     }
   },
   };

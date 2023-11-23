@@ -3,6 +3,8 @@ import Home from '../components/Home.vue'
 import signUp from '../components/signUp.vue'
 import signIn from '../components/signIn.vue'
 import timeLine from '../components/timeLine.vue'
+import profile from '../components/profile.vue'
+import {pageVerify} from '../api/pageProtect';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -11,6 +13,7 @@ const router = createRouter({
         path: '/',
         name: 'home',
         component: Home,
+        
       },
       {
         path: '/signup',
@@ -26,6 +29,13 @@ const router = createRouter({
         path: '/timeline',
         name: 'timeline',
         component: timeLine,
+        beforeEnter: pageVerify,
+      },
+      {
+        path: '/profile',
+        name: 'profile',
+        component: profile,
+        beforeEnter: pageVerify,
       }   
     ],
 });

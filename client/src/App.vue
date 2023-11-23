@@ -3,8 +3,9 @@
     <nav>
       <router-link v-if="!isAuthenticated" to="/signup">Sign Up</router-link>
       <router-link v-if="!isAuthenticated" to="/signin">Sign In</router-link>
-      <router-link v-if="isAuthenticated"  to="/" @click="clearToken">Sign Out</router-link>
       <router-link v-if="isAuthenticated" to="/timeline">Timeline</router-link>
+      <router-link v-if="isAuthenticated" to="/profile">My Profile</router-link>
+      <router-link v-if="isAuthenticated"  to="/" @click="clearToken">Sign Out</router-link>
     </nav>
     <router-view/>
   </div>
