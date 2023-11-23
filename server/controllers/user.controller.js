@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Post = require('../models/posts');
 const bcrypt = require('bcrypt');
 
 // Create a new user
@@ -74,6 +75,7 @@ exports.updateUserById = async (req, res) => {
 exports.deleteUserById = async (req, res) => {
   try {
     const userId = req.params.userId;
+    await Post.deleteMany({ poster: userId });
     const deletedUser = await User.findByIdAndDelete(userId);
     if (!deletedUser) {
       return res.status(404).json({ message: 'User not found' });

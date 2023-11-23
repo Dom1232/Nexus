@@ -1,27 +1,41 @@
 <template>
   <div class="profile-container">
     <h2 class="profile-heading">User Profile</h2>
-    <div v-if="currentUser">
+    <div>     
       <div class="profile-info">
-        <div class="info-item">
+        <form @submit.prevent="updateUser">
+        <div class="info-item">  
           <span class="info-label">Name:</span>
-          <span class="info-value">{{ currentUser.name }}</span>
+          <input v-model="name" type="text" class="info-value" />
         </div>
         <div class="info-item">
           <span class="info-label">Email:</span>
-          <span class="info-value">{{ currentUser.email }}</span>
+          <input v-model="email" type="email" class="info-value" />
+        </div>
+        <div class="info-item">
+          <span class="info-label">Password:</span>
+          <input v-model="password" class="info-value" />
         </div>
 
         <div class="profile-actions">
-          <button @click="updateProfile" class="action-button">
+          <button type="submit" class="action-button">
             <i class="fas fa-edit"></i> Update
           </button>
-          <button @click="deleteProfile" class="action-button delete-button">
+          <button @click.prevent="deleteUser" class="action-button delete-button">
             <i class="fas fa-trash-alt"></i> Delete
           </button>
-        </div>
+        </div>   
+      </form>
       </div>
+      <transition name="fade">
+        <h4 v-if="message" class="success-message">
+          Profile Successfully Updated
+        </h4>
+      </transition>
     </div>
+  </div>
+  <div>
+
   </div>
 </template>
 
@@ -30,25 +44,61 @@
 export default {
     data() {
       return {
-        currentUser: null,
+        name: '',
+        email: '',
+        password: '',
         id: '',
+        message: null,
+        isAuthenticated: this.$auth.isAuthenticated()
     };
     },
     created() {
     this.fetchCurrentUser();
+    if (!this.isAuthenticated){
+      this.$router.push({ name: 'home' });
+    }
     },
     methods: {
-        async fetchCurrentUser() {
-            try {
-            const token = localStorage.getItem('token')
-            const returnData = await this.$authService.decodeToken(token);
-            this.id = returnData.id;
-            const user = await this.$apiService.fetchProfile(token, this.id);
-            this.currentUser = user;
-        } catch (error) {
+    async fetchCurrentUser() {
+      try {
+        const token = localStorage.getItem('token')
+        const returnData = await this.$authService.decodeToken(token);
+        this.id = returnData.id;
+        const user = await this.$apiService.fetchProfile(token, this.id);
+        this.name = user.name;
+        this.email = user.email;
+        
+      } catch (error) {
         console.error('Error fetching user details:', error);
       }
     },
+    async updateUser() {
+      try {
+        const token = localStorage.getItem('token')
+        const returnData = await this.$apiService.updateProfile(token, this.id, this.name, this.email, this.password);
+        this.name = returnData.user.name;
+        this.email = returnData.user.email;
+        this.password = '';
+        this.message = true;
+        setTimeout(() => {
+          this.message = false;
+        }, 3000);
+      } catch (error) {
+        console.error('Error updating user details:', error);
+        
+      }
+    },
+    async deleteUser() {
+      try {
+        const token = localStorage.getItem('token');
+        await this.$apiService.deleteProfile(token, this.id);
+        this.$auth.clearToken();
+        window.location.reload();
+      } catch (error) {
+        console.error('Error deleting user:', error);
+      }
+    },
+
   },
 };
 </script>
@@ -113,5 +163,17 @@ export default {
 
 .delete-button:hover {
   background-color: #c0392b;
+}
+
+.success-message {
+  opacity: 1;
+  transition: opacity 2.5s ease-in-out;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1.5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>

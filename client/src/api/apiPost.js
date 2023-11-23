@@ -16,4 +16,18 @@ export default {
         throw error;
       }
     },
+    
+    deleteUserPosts: async (token) => {
+        try {
+          const response = await axios.get(`${API_URL}/posts/postlist`, {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          });
+          return response.data;
+        } catch (error) {
+          console.error('Error creating Account:', error);
+          throw error;
+        }
+      },
 };

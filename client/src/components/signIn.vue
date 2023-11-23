@@ -14,13 +14,7 @@
             <div v-if="signInError">Error signing in. Please check your credentials.</div>
         </form>
     </div>
-    <div v-if="isAuthenticated">
-        <h2>Successfully Signed in, Click your</h2>
-        <h2>timeline above or the logo below to enter.</h2>
-        <img src="../assets/logo.png" alt="Nexus Logo" @click="forward">
-
-    </div>
-  </template>
+</template>
   
 <script>
 import axios from 'axios';
@@ -33,6 +27,11 @@ import axios from 'axios';
         signInError: null,
         isAuthenticated: this.$auth.isAuthenticated()
     };
+    },
+    created() {
+        if (this.isAuthenticated){
+            this.$router.push({ name: 'timeline' });
+        }    
     },
     methods: {
     async signIn() {
@@ -63,7 +62,7 @@ import axios from 'axios';
       }
     },
     async forward(){
-        this.$router.push({ name: 'signin' });
+        
     }
   },
   };
@@ -111,5 +110,20 @@ import axios from 'axios';
     margin-top: 5px;
     margin-bottom: 10px;
     box-sizing: border-box;
+  }
+  .signed-in-container {
+  position: relative;
+  }
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0); 
+    font-size: 35px; 
+    cursor: pointer;
+  }
+  img {
+    cursor: pointer;
   }
 </style>

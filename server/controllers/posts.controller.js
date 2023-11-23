@@ -2,7 +2,7 @@ const Post = require('../models/posts');
 
 exports.makePost = async (req, res) => {
     try {
-      const { poster, body} = req.body;
+      const { poster, body } = req.body;
 
       const newPost = new Post({ poster, body});
 
