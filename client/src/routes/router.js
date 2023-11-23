@@ -3,7 +3,7 @@ import Home from '../components/Home.vue'
 import signUp from '../components/signUp.vue'
 import signIn from '../components/signIn.vue'
 import timeLine from '../components/timeLine.vue'
-import profile from '../components/profile.vue'
+import profile from '../components/myProfile.vue'
 import {pageVerify} from '../api/pageProtect';
 
 const router = createRouter({

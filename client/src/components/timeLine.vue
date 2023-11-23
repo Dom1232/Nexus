@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Posts</h2>
+        <h2 class="heading">Posts</h2>
         <div>
             <div v-for="post in reversedPosts" :key="post._id" class="post">
                 <div class="post-header">
@@ -78,6 +78,12 @@ import auth from '@/api/auth-help';
   margin-right : auto;
 }
 
+.heading {
+  text-align: center;
+  color: #3498db;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
 .post-header {
   display: flex;
   align-items: center;
