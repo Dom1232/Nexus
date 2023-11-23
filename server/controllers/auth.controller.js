@@ -74,5 +74,17 @@ exports.isAuthorized = (req, res, next) => {
     next();
 }
 
-
+exports.decode = (req, res) => {
+  try {
+    const token = req.body.token;
+    if (!token) {
+      return res.status(401).json({ message: 'No token' });
+    }
+    const decodedToken = jwt.verify(token, config.jwtSecret);
+    const id = decodedToken._id;
+    return res.status(200).json({ id });
+  } catch {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+}
   
