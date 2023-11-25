@@ -11,7 +11,9 @@
             <br />
         
             <button>Sign In</button>
-            <div v-if="signInError">Error signing in. Please check your credentials.</div>
+            <transition name="fade">
+            <h4 v-if="signInError" class="error-message">Error signing in. Please check your credentials.</h4>
+            </transition>
         </form>
     </div>
 </template>
@@ -55,10 +57,16 @@ import axios from 'axios';
         } else {
           console.error('Error signing in:', response.data.message);
           this.signInError = true;
+          setTimeout(() => {
+          this.signInError = false;
+          }, 3000);
         }
       } catch (error) {
         console.error('Error signing in:', error);
         this.signInError = true;
+        setTimeout(() => {
+          this.signInError = false;
+        }, 3000);
       }
     },
     async forward(){
@@ -114,7 +122,7 @@ import axios from 'axios';
   .signed-in-container {
   position: relative;
   }
-  .overlay-text {
+.overlay-text {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -122,8 +130,21 @@ import axios from 'axios';
     color: rgb(0, 0, 0); 
     font-size: 35px; 
     cursor: pointer;
-  }
-  img {
+}
+
+img {
     cursor: pointer;
-  }
+}
+
+.success-message {
+  opacity: 1;
+  transition: opacity 2.5s ease-in-out;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1.5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 </style>

@@ -20,6 +20,9 @@
                 </div>
             </div>
         </div>
+        <button @click="navigateToNewPage" class="new-page-button">
+            <i class="fas fa-plus"></i>
+        </button>
     </div>
 </template>
   
@@ -52,15 +55,17 @@ import auth from '@/api/auth-help';
         }
       },
       formatDateTime(dateTimeString) {
-      const options = {
+        const options = {
         hour: 'numeric',
         minute: 'numeric',
         month: 'short',
         day: 'numeric',
         year: 'numeric',
-      };
-
-      return new Date(dateTimeString).toLocaleString('en-US', options);
+        };
+        return new Date(dateTimeString).toLocaleString('en-US', options);
+      },
+      async navigateToNewPage() {
+        this.$router.push('/makePost');
       },
     },
   };
@@ -139,6 +144,27 @@ import auth from '@/api/auth-help';
   font-size: 20px;
   justify-content: space-between;
 }
+
+.new-page-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 </style>

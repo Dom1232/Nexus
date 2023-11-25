@@ -58,4 +58,7 @@ nav a:hover {
   text-decoration: underline;
 }
 
+body {
+  background-color: rgb(203, 83, 224);
+}
 </style>

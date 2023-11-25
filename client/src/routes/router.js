@@ -4,6 +4,7 @@ import signUp from '../components/signUp.vue'
 import signIn from '../components/signIn.vue'
 import timeLine from '../components/timeLine.vue'
 import profile from '../components/myProfile.vue'
+import makePost from '../components/makePost.vue'
 import {pageVerify} from '../api/pageProtect';
 
 const router = createRouter({
@@ -35,6 +36,12 @@ const router = createRouter({
         path: '/profile',
         name: 'profile',
         component: profile,
+        beforeEnter: pageVerify,
+      },
+      {
+        path: '/post',
+        name: 'makePost',
+        component: makePost,
         beforeEnter: pageVerify,
       }   
     ],

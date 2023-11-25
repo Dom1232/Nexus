@@ -105,7 +105,7 @@ export default {
 
 <style scoped>
 .profile-container {
-  max-width: 600px;
+  max-width: 480px;
   margin: 0 auto;
 }
 
@@ -117,7 +117,7 @@ export default {
 }
 
 .profile-info {
-  background-color: #ecf0f1;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -165,7 +165,7 @@ export default {
   background-color: #c0392b;
 }
 
-.success-message {
+.error-message {
   opacity: 1;
   transition: opacity 2.5s ease-in-out;
 }
