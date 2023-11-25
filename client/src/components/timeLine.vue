@@ -85,8 +85,8 @@ import auth from '@/api/auth-help';
 
 .heading {
   text-align: center;
-  color: #3498db;
-  font-size: 28px;
+  color: #82cdff;
+  font-size: 34px;
   margin-bottom: 20px;
 }
 .post-header {
@@ -150,7 +150,7 @@ import auth from '@/api/auth-help';
     bottom: 20px;
     right: 20px;
     padding: 10px;
-    background-color: #3498db;
+    background-color: #82cdff;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -161,10 +161,7 @@ import auth from '@/api/auth-help';
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-
-
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 </style>
