@@ -16,18 +16,17 @@ export default {
         throw error;
       }
     },
-    
-    deleteUserPosts: async (token) => {
+
+    makePost: async (token, poster, body) => {
         try {
-          const response = await axios.get(`${API_URL}/posts/postlist`, {
+          await axios.post(`${API_URL}/posts/postmake`, {poster, body}, {
               headers: {
                   Authorization: `Bearer ${token}`,
               },
           });
-          return response.data;
         } catch (error) {
-          console.error('Error creating Account:', error);
+          console.error('Error creating Post:', error);
           throw error;
         }
-      },
+    },
 };

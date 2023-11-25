@@ -65,7 +65,7 @@ import auth from '@/api/auth-help';
         return new Date(dateTimeString).toLocaleString('en-US', options);
       },
       async navigateToNewPage() {
-        this.$router.push('/makePost');
+        this.$router.push('/post');
       },
     },
   };
