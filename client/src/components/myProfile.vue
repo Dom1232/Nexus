@@ -111,7 +111,7 @@ export default {
 
 .profile-heading {
   text-align: center;
-  color: #3498db;
+  color: black;
   font-size: 28px;
   margin-bottom: 20px;
 }

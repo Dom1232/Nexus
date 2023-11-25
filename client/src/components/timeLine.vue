@@ -85,8 +85,8 @@ import auth from '@/api/auth-help';
 
 .heading {
   text-align: center;
-  color: #82cdff;
-  font-size: 34px;
+  color: black;
+  font-size: 28px;
   margin-bottom: 20px;
 }
 .post-header {
