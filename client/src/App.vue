@@ -3,9 +3,10 @@
     <nav>
       <router-link v-if="!isAuthenticated" to="/signup">Sign Up</router-link>
       <router-link v-if="!isAuthenticated" to="/signin">Sign In</router-link>
-      <router-link v-if="isAuthenticated" to="/timeline">Timeline</router-link>
-      <router-link v-if="isAuthenticated" to="/profile">My Profile</router-link>
-      <router-link v-if="isAuthenticated"  to="/" @click="clearToken">Sign Out</router-link>
+      <router-link class="center" v-if="isAuthenticated" to="/timeline">Timeline</router-link>
+      <router-link class="right" v-if="isAuthenticated"  to="/" @click="clearToken">Sign Out</router-link>
+      <router-link class="right" v-if="isAuthenticated" to="/profile">My Profile</router-link>
+      
     </nav>
     <router-view/>
   </div>
@@ -41,7 +42,9 @@ export default {
 
 nav {
   background-color: #333;
-  padding: 20px;
+  padding: 8px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   color: white;
   width: 100%;
   margin-left: -8px;
@@ -60,5 +63,13 @@ nav a:hover {
 
 body {
   background-color: rgb(203, 83, 224);
+}
+
+.right{
+  float: right;
+}
+
+.center{
+  margin-right: -165px;
 }
 </style>

@@ -29,4 +29,17 @@ export default {
           throw error;
         }
     },
+
+    deletePost: async (token, userId, postId) => {
+        try {
+            await axios.delete(`${API_URL}/posts/postdelete/${postId}/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        } catch (error) {
+          console.error('Error deleting Post:', error);
+          throw error;
+        }
+    },
 };

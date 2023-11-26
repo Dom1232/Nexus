@@ -8,6 +8,12 @@
                     <div class="position">
                         <strong>{{ post.poster.name }}</strong>
                     </div>
+                    <div  class="dropdown">
+                        <i v-if="post.poster._id === keyUser" @click="toggleDropdown" class="fas fa-ellipsis-h"></i>
+                        <div v-if="showDropdown" class="dropdown-content">
+                        <a @click="deletePost(post._id)">Delete Post</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="post-body">
                     {{ post.body }}
@@ -34,6 +40,9 @@ import auth from '@/api/auth-help';
     data() {
       return {
         posts: [],
+        showDropdown: false,
+        keyUser: '',
+
       };
     },
     created() {
@@ -48,11 +57,21 @@ import auth from '@/api/auth-help';
     methods: {
       async getAllPosts() {
         try {
-          const token = localStorage.getItem('token')
+          const token = localStorage.getItem('token');
+          const returnData = await this.$authService.decodeToken(token);
+          this.keyUser = returnData.id;
           this.posts = await this.$postService.getAllPosts(token);
         } catch (error) {
           console.error('Error getting posts:', error);
         }
+      },
+      async deletePost(postId) {
+        const token = localStorage.getItem('token');
+        await this.$postService.deletePost(token, this.keyUser, postId);
+        window.location.reload();
+      },
+      toggleDropdown() {
+        this.showDropdown = !this.showDropdown;
       },
       formatDateTime(dateTimeString) {
         const options = {
@@ -162,6 +181,37 @@ import auth from '@/api/auth-help';
     align-items: center;
     justify-content: center;
   }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  max-width: 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 </style>

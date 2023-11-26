@@ -54,9 +54,6 @@ export default {
     },
     created() {
     this.fetchCurrentUser();
-    if (!this.isAuthenticated){
-      this.$router.push({ name: 'home' });
-    }
     },
     methods: {
     async fetchCurrentUser() {
