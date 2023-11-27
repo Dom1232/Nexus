@@ -14,6 +14,17 @@ export default {
       }
     },
 
+    getAllUsers: async () => {
+        try {
+            const response = await axios.get(`${API_URL}/api/users`, {
+            });
+            return response.data;
+          } catch (error) {
+            console.error('Error creating Account:', error);
+            throw error;
+          }
+        },
+
     fetchProfile: async (token, id) => {
         try {
             const response = await axios.get(`${API_URL}/api/users/${id}`, {

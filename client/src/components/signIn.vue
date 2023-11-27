@@ -9,10 +9,15 @@
             <label>Password:</label>
             <input v-model="password" required/>
             <br />
-        
+            <router-link to="/">
+              <button>Cancel</button>
+            </router-link>
             <button>Sign In</button>
             <transition name="fade">
             <h4 v-if="signInError" class="error-message">Error signing in. Please check your credentials.</h4>
+            </transition>
+            <transition name="fade">
+            <h4 v-if="Error" class="error-message">Email or Username Already Exists</h4>
             </transition>
         </form>
     </div>
@@ -27,6 +32,7 @@ import axios from 'axios';
         email: '',
         password: '',
         signInError: null,
+        isAuthenticated: false,
     };
     },
     methods: {
@@ -63,9 +69,6 @@ import axios from 'axios';
         }, 3000);
       }
     },
-    async forward(){
-        
-    }
   },
   };
 </script>

@@ -7,7 +7,7 @@ const authController = require('../controllers/auth.controller');
 router.post('/users', userController.createUser);
 
 // Get all users
-router.get('/users', authController.requireSignin, userController.getAllUsers);
+router.get('/users', userController.getAllUsers);
 
 // Get a user by ID
 router.get('/users/:userId', authController.requireSignin, userController.getUserById);

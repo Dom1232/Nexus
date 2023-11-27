@@ -42,6 +42,7 @@
 <script>
 
 export default {
+  emits: ['user-signed-in'],
     data() {
       return {
         name: '',

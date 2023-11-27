@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  emits: ['user-signed-in'],
   name: 'homePage'
 }
 </script>
