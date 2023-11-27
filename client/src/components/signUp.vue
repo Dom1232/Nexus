@@ -7,7 +7,7 @@
         <input type="text" id="name" v-model="userData.name" required>
 
         <label for="email">Email:</label>
-        <input type="text" id="email" v-model="userData.email" required>
+        <input type="text" id="email" v-model="userData.email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
 
         <label for="password">Password:</label>
         <input type="text" id="password" v-model="userData.password" required>

@@ -10,7 +10,7 @@
         </div>
         <div class="info-item">
           <span class="info-label">Email:</span>
-          <input v-model="email" type="email" class="info-value" />
+          <input v-model="email" type="email" class="info-value" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
         </div>
         <div class="info-item">
           <span class="info-label">Password:</span>
