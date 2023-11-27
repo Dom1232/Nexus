@@ -27,13 +27,7 @@ import axios from 'axios';
         email: '',
         password: '',
         signInError: null,
-        isAuthenticated: this.$auth.isAuthenticated()
     };
-    },
-    created() {
-        if (this.isAuthenticated){
-            this.$router.push({ name: 'timeline' });
-        }    
     },
     methods: {
     async signIn() {
@@ -52,8 +46,8 @@ import axios from 'axios';
         if (response.status === 200) {
           console.log('Sign in successful');
           localStorage.setItem('token', response.data.token);
-          //Had to use this due to it not reloading the router bar properly
-          window.location.reload();    
+          this.$emit('user-signed-in', true);   
+          this.$router.push({ name: 'timeline' });
         } else {
           console.error('Error signing in:', response.data.message);
           this.signInError = true;

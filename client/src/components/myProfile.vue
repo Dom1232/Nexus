@@ -90,7 +90,8 @@ export default {
         const token = localStorage.getItem('token');
         await this.$apiService.deleteProfile(token, this.id);
         this.$auth.clearToken();
-        window.location.reload();
+        this.$emit('user-signed-in', false);  
+        this.$router.push({ name: 'home' });
       } catch (error) {
         console.error('Error deleting user:', error);
       }

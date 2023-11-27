@@ -1,14 +1,14 @@
 <template>
   <div>
     <nav>
-      <router-link v-if="!isAuthenticated" to="/signup">Sign Up</router-link>
-      <router-link v-if="!isAuthenticated" to="/signin">Sign In</router-link>
-      <router-link class="center" v-if="isAuthenticated" to="/timeline">Timeline</router-link>
+      <router-link v-if="!isAuthenticated" to="/signup" :class="{ 'active-link': isRouteActive(!isAuthenticated ? '/signup' : '/') }">Sign Up</router-link>
+      <router-link v-if="!isAuthenticated" to="/signin" :class="{ 'active-link': isRouteActive(!isAuthenticated ? '/signin' : '/timeline') }">Sign In</router-link>
+      <router-link class="center" v-if="isAuthenticated" to="/timeline" :class="{ 'active-link': isRouteActive('/timeline') }">Timeline</router-link>
       <router-link class="right" v-if="isAuthenticated"  to="/" @click="clearToken">Sign Out</router-link>
-      <router-link class="right" v-if="isAuthenticated" to="/profile">My Profile</router-link>
+      <router-link class="right" v-if="isAuthenticated" to="/profile" :class="{ 'active-link': isRouteActive('/profile') }">My Profile</router-link>
       
     </nav>
-    <router-view/>
+    <router-view @user-signed-in="updateAuthenticationStatus"/>
   </div>
 </template>
 
@@ -26,7 +26,13 @@ export default {
     clearToken() {
       auth.clearToken();
       this.isAuthenticated = auth.isAuthenticated();
-    }
+    },
+    updateAuthenticationStatus(isAuthenticated) {
+      this.isAuthenticated = isAuthenticated;
+    },
+    isRouteActive(route) {
+      return this.$route.path === route;
+    },
   }
 }
 </script>
@@ -71,5 +77,9 @@ body {
 
 .center{
   margin-right: -165px;
+}
+
+.active-link {
+  color: red;
 }
 </style>
