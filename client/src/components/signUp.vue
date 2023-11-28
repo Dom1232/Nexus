@@ -7,7 +7,7 @@
         <input type="text" id="name" v-model="userData.name" required>
 
         <label for="email">Email:</label>
-        <input type="text" id="email" v-model="userData.email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+        <input type="email" id="email" v-model="userData.email" required>
 
         <label for="password">Password:</label>
         <input type="text" id="password" v-model="userData.password" required>
@@ -18,10 +18,14 @@
         <button type="submit">Submit</button>
       </form>
     </div>
+    <transition name="fade">
+      <h4 v-if="Error" class="error-message">Email or Username Already Exists</h4>
+    </transition>
 </template>
   
 <script>
 export default {
+  emits: ['user-signed-in'],
     data() {
     return {
       userData: {
@@ -29,6 +33,7 @@ export default {
         email: '',
         password: '',
       },
+      Error: false,
     };
     },
     methods: {
@@ -39,11 +44,17 @@ export default {
             this.$router.push({ name: 'signin' });
           })
           .catch(error => {
-            console.error('Error creating user:', error);
+            console.error(error);
+            if (error.message === 'Username or email already exists') {
+              this.Error = true;
+              setTimeout(() => {
+                this.Error = false;
+              }, 3000);
+            }
           });
+        },
       },
-    },
-  };
+    };
 </script>
 
 <style scoped>

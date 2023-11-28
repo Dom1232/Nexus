@@ -4,28 +4,28 @@
     <div>     
       <div class="profile-info">
         <form @submit.prevent="updateUser">
-        <div class="info-item">  
-          <span class="info-label">Name:</span>
-          <input v-model="name" type="text" class="info-value" required/>
-        </div>
-        <div class="info-item">
-          <span class="info-label">Email:</span>
-          <input type="text" v-model="email"  class="info-value" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
-        </div>
-        <div class="info-item">
-          <span class="info-label">Password:</span>
-          <input v-model="password" class="info-value" />
-        </div>
+          <div class="info-item">  
+            <span class="info-label">Name:</span>
+            <input v-model="name" type="text" class="info-value" required/>
+          </div>
+          <div class="info-item">
+            <label class="info-label">Email:</label>
+            <input type="email" v-model="email" class="info-value" required/>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Password:</span>
+            <input v-model="password" class="info-value" />
+          </div>
 
-        <div class="profile-actions">
-          <button type="submit" class="action-button">
-            <i class="fas fa-edit"></i> Update
-          </button>
-          <button @click.prevent="deleteUser" class="action-button delete-button">
-            <i class="fas fa-trash-alt"></i> Delete
-          </button>
-        </div>   
-      </form>
+          <div class="profile-actions">
+            <button type="submit" class="action-button">
+              <i class="fas fa-edit"></i> Update
+            </button>
+            <button @click.prevent="deleteUser" class="action-button delete-button">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </div>   
+        </form>
       </div>
       <transition name="fade">
         <h4 v-if="message" class="success-message">

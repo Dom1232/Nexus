@@ -17,9 +17,6 @@
             <transition name="fade">
             <h4 v-if="signInError" class="error-message">Error signing in. Please check your credentials.</h4>
             </transition>
-            <transition name="fade">
-            <h4 v-if="Error" class="error-message">Email or Username Already Exists</h4>
-            </transition>
         </form>
     </div>
 </template>

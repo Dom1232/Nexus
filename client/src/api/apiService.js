@@ -7,10 +7,14 @@ export default {
     createUser: async (userData) => {
       try {
         const response = await axios.post(`${API_URL}/api/users`, userData);
-        console.log('Response:', response.data);
+        return response.data;
       } catch (error) {
-        console.error('Error creating Account:', error);
+        console.error('Error creating Account');
+        if (error.response.status === 400) {
+          throw new Error('Username or email already exists');
+        } else {
         throw error;
+        }
       }
     },
 
