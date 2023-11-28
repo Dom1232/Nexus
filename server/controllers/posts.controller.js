@@ -1,4 +1,5 @@
 const Post = require('../models/posts');
+const Comment = require('../models/comment');
 
 exports.makePost = async (req, res) => {
     try {
@@ -29,6 +30,7 @@ exports.getAllPosts = async (req, res) => {
 exports.deletePost = async (req, res) => {
     try {
         const postId = req.params.postId;
+        await Comment.deleteMany({ _id: { $in: (await Post.findById(postId)).comments } });
         const deletedPost = await Post.findByIdAndDelete(postId);
         if (!deletedPost) {
           return res.status(404).json({ message: 'Post not found' });
@@ -38,4 +40,24 @@ exports.deletePost = async (req, res) => {
         console.error('Error deleting post:', error);
         res.status(500).json({ message: 'Internal server error' });
       }
+};
+
+exports.getPostById = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const post = await Post.findById(postId).populate('poster', 'name').populate({
+      path: 'comments',
+      populate: {
+        path: 'poster',
+        select: 'name', 
+      }
+    }).exec();
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    res.status(200).json(post);
+  } catch (error) {
+    console.error('Error getting post by ID:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 };

@@ -9,10 +9,11 @@
             <label>Password:</label>
             <input v-model="password" required/>
             <br />
+            <button>Sign In</button>
             <router-link to="/">
               <button>Cancel</button>
             </router-link>
-            <button>Sign In</button>
+            
             <transition name="fade">
             <h4 v-if="signInError" class="error-message">Error signing in. Please check your credentials.</h4>
             </transition>

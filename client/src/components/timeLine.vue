@@ -21,12 +21,12 @@
                 <div class="post-footer">
                     <span class="timestamp">{{ formatDateTime(post.created) }}</span>
                     <div class="footer-item">
-                        <i class="fas fa-comment"></i>
+                        <RouterLink :to="'/viewPost/' + post._id"><i class="fas fa-comment"></i></RouterLink>
                     </div>
                 </div>
             </div>
         </div>
-        <button @click="navigateToNewPage" class="new-page-button">
+        <button @click="navigateToPost" class="post-button">
             <i class="fas fa-plus"></i>
         </button>
     </div>
@@ -34,7 +34,6 @@
   
   
   <script>
-import auth from '@/api/auth-help';
 
   export default {
     data() {
@@ -46,7 +45,6 @@ import auth from '@/api/auth-help';
       };
     },
     created() {
-      auth.isAuthenticated();
       this.getAllPosts();
     },
     computed: {
@@ -83,7 +81,7 @@ import auth from '@/api/auth-help';
         };
         return new Date(dateTimeString).toLocaleString('en-US', options);
       },
-      async navigateToNewPage() {
+      async navigateToPost() {
         this.$router.push('/post');
       },
     },
@@ -164,7 +162,7 @@ import auth from '@/api/auth-help';
   justify-content: space-between;
 }
 
-.new-page-button {
+.post-button {
     position: fixed;
     bottom: 20px;
     right: 20px;

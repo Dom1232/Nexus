@@ -42,4 +42,44 @@ export default {
           throw error;
         }
     },
+
+    getPostDetails: async (token, id) => {
+      try {
+          const response = await axios.get(`${API_URL}/posts/post/${id}`, {
+          headers: {
+              Authorization: `Bearer ${token}`,
+          },
+      });
+        return response.data;
+      } catch (error) {
+        console.error('Error getting Post:', error);
+        throw error;
+      }
+    },
+
+    addComment: async (token, postID, poster, body) => {
+      try {
+        await axios.post(`${API_URL}/comment/${postID}/comments`, {poster, body}, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+      } catch (error) {
+        console.error('Error creating Post:', error);
+        throw error;
+      }
+    },
+
+    deleteComment: async (token, userId, commentId) => {
+      try {
+          await axios.delete(`${API_URL}/comment/commentdelete/${commentId}/${userId}`, {
+          headers: {
+              Authorization: `Bearer ${token}`,
+          },
+      });
+      } catch (error) {
+        console.error('Error deleting Post:', error);
+        throw error;
+      }
+  },
 };

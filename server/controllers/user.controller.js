@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Post = require('../models/posts');
+const Comment = require('../models/comment');
 const bcrypt = require('bcrypt');
 
 // Create a new user
@@ -75,14 +76,24 @@ exports.updateUserById = async (req, res) => {
 exports.deleteUserById = async (req, res) => {
   try {
     const userId = req.params.userId;
+
+    const userPosts = await Post.find({ poster: userId });
+
+    for (const post of userPosts) {
+      await Comment.deleteMany({ _id: { $in: post.comments } });
+      console.log("Deleted Other User Comment")
+    }
+
+    await Comment.deleteMany({ poster: userId });
     await Post.deleteMany({ poster: userId });
+
     const deletedUser = await User.findByIdAndDelete(userId);
     if (!deletedUser) {
       return res.status(404).json({ message: 'User not found' });
     }
     res.status(200).json({ message: 'User deleted successfully', user: deletedUser });
   } catch (error) {
-    console.error('Error deleting user:', error);
+    console.error('Error deleting user and data:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };

@@ -8,6 +8,7 @@ const Template = require('./../template.js');
 const userRoutes = require('./routes/user.routes.js');
 const authRoutes = require('./routes/auth.routes.js');
 const postRoutes = require('./routes/posts.routes.js');
+const commentRoutes = require('./routes/comment.routes.js');
 const path = require('path');
 
 const app = express();
@@ -29,6 +30,7 @@ app.use(helmet());
 app.use('/api', userRoutes);
 app.use('/auth', authRoutes);
 app.use('/posts', postRoutes);
+app.use('/comment', commentRoutes);
 
 app.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {

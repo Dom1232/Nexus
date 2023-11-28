@@ -80,7 +80,7 @@ body {
 }
 
 .center{
-  margin-right: -165px;
+  margin-right: -190px;
 }
 
 .active-link {

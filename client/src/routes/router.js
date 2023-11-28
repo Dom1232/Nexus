@@ -5,6 +5,7 @@ import signIn from '../components/signIn.vue'
 import timeLine from '../components/timeLine.vue'
 import profile from '../components/myProfile.vue'
 import makePost from '../components/makePost.vue'
+import viewPost from '../components/viewPost.vue'
 import {pageVerify} from '../api/pageProtect';
 
 const router = createRouter({
@@ -43,7 +44,14 @@ const router = createRouter({
         name: 'makePost',
         component: makePost,
         beforeEnter: pageVerify,
-      }   
+      },
+      {
+        path: '/viewPost/:postId',
+        name: 'viewPost',
+        component: viewPost,
+        beforeEnter: pageVerify,
+      },
+        
     ],
 });
 
