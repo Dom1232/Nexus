@@ -2,11 +2,13 @@
     <div class="dropdown">
       <button @click="toggleDropdown">Users<i class="fas fa-caret-down"></i></button>
       <div v-if="showDropdown" class="dropdown-content">
-        <a v-for="user in users" :key="user.id" class="user-item">{{ user.name }}</a>
+        <router-link v-for="user in users" :key="user._id" :to="'/user/' + user._id">
+          {{ user.name }}
+        </router-link>
       </div>
     </div>
   </template>
-
+  
   <script>
   export default {
     data() {

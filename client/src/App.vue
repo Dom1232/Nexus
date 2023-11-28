@@ -4,6 +4,7 @@
       <dropdown v-if="!isAuthenticated"></dropdown>
       <router-link v-if="!isAuthenticated" to="/signup" :class="{ 'active-link': isRouteActive(!isAuthenticated ? '/signup' : '/') }">Sign Up</router-link>
       <router-link v-if="!isAuthenticated" to="/signin" :class="{ 'active-link': isRouteActive(!isAuthenticated ? '/signin' : '/timeline') }">Sign In</router-link>
+      <logged-dropdown v-if="isAuthenticated"></logged-dropdown>
       <router-link class="center" v-if="isAuthenticated" to="/timeline" :class="{ 'active-link': isRouteActive('/timeline') }">Timeline</router-link>
       <router-link class="right" v-if="isAuthenticated"  to="/" @click="clearToken">Sign Out</router-link>
       <router-link class="right" v-if="isAuthenticated" to="/profile" :class="{ 'active-link': isRouteActive('/profile') }">My Profile</router-link>
@@ -15,11 +16,13 @@
 <script>
 import auth from './api/auth-help';
 import Dropdown from '@/components/userDropdown.vue';
+import loggedDropdown from '@/components/loggedDropdown.vue';
 
 export default {
   name: 'App',
   components: {
-    Dropdown
+    Dropdown,
+    loggedDropdown
   },
   data() {
     return {
@@ -80,7 +83,7 @@ body {
 }
 
 .center{
-  margin-right: -190px;
+  margin-right: -205px;
 }
 
 .active-link {
