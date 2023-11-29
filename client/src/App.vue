@@ -80,6 +80,7 @@ body {
 
 .right{
   float: right;
+  margin-top: 10px
 }
 
 .center{

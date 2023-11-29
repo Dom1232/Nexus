@@ -12,7 +12,7 @@ export default {
         });
         return response.data;
       } catch (error) {
-        console.error('Error creating Account:', error);
+        console.error('Error getting posts:', error);
         throw error;
       }
     },
@@ -81,5 +81,19 @@ export default {
         console.error('Error deleting Post:', error);
         throw error;
       }
-  },
-};
+    },
+
+    getPostsByUser: async (token, userId) => {
+      try {
+        const response = await axios.get(`${API_URL}/posts/userposts/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return response.data;
+      } catch (error) {
+        console.error('Error Getting User posts:', error);
+        throw error;
+      }
+    }
+}; 

@@ -21,7 +21,7 @@
                 <div class="post-footer">
                     <span class="timestamp">{{ formatDateTime(post.created) }}</span>
                     <div class="footer-item">
-                        <RouterLink :to="'/viewPost/' + post._id"><i class="fas fa-comment"></i></RouterLink>
+                        {{ post.comments.length }}<RouterLink :to="'/viewPost/' + post._id"><i class="fas fa-comment"></i></RouterLink>
                     </div>
                 </div>
             </div>
@@ -140,6 +140,10 @@
 .post-body {
   margin-bottom: 15px;
   line-height: 1.6;
+  word-break: break-all;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .post-footer {

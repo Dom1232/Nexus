@@ -88,16 +88,18 @@ export default {
     },
     async deleteUser() {
       try {
-        const token = localStorage.getItem('token');
-        await this.$apiService.deleteProfile(token, this.id);
-        this.$auth.clearToken();
-        this.$emit('user-signed-in', false);  
-        this.$router.push({ name: 'home' });
+        const confirmed = window.confirm('Are you sure you want to delete your profile? This action is irreversible.');
+        if (confirmed) {
+          const token = localStorage.getItem('token');
+          await this.$apiService.deleteProfile(token, this.id);
+          this.$auth.clearToken();
+          this.$emit('user-signed-in', false);  
+          this.$router.push({ name: 'home' });
+        }
       } catch (error) {
         console.error('Error deleting user:', error);
       }
     },
-
   },
 };
 </script>

@@ -15,4 +15,7 @@ router.delete('/postdelete/:postId/:userId', authController.requireSignin, authC
 //Get Post by ID
 router.get('/post/:postId', authController.requireSignin, postsController.getPostById);
 
+//Get all user posts
+router.get('/userposts/:userId', authController.requireSignin, postsController.getAllUserPosts);
+
 module.exports = router;

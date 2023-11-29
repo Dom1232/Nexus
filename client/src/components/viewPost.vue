@@ -176,6 +176,10 @@
 .post-body {
   margin-bottom: 15px;
   line-height: 1.6;
+  word-break: break-all;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .post-footer {

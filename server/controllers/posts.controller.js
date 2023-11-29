@@ -61,3 +61,14 @@ exports.getPostById = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+exports.getAllUserPosts = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const posts = await Post.find({poster: userId}).populate('poster', 'name').exec();
+    res.status(200).json(posts);
+  } catch (error) {
+    console.error('Error getting posts:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};

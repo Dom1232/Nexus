@@ -24,7 +24,7 @@ export default {
             });
             return response.data;
           } catch (error) {
-            console.error('Error creating Account:', error);
+            console.error('Error getting Users:', error);
             throw error;
           }
         },
@@ -38,7 +38,7 @@ export default {
         });
           return response.data;
         } catch (error) {
-          console.error('Error creating Account:', error);
+          console.error('Error getting Account:', error);
           throw error;
         }
     },
@@ -52,7 +52,7 @@ export default {
         });
           return response.data;
         } catch (error) {
-          console.error('Error creating Account:', error);
+          console.error('Error updating Account:', error);
           throw error;
         }
     },
@@ -65,7 +65,7 @@ export default {
             },
         });
         } catch (error) {
-          console.error('Error creating Account:', error);
+          console.error('Error deleting Account:', error);
           throw error;
         }
     },
