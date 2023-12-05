@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://nexus-11h5.onrender.com';
+const API_URL = 'http://localhost:3000';
 
 export default {
     getAllPosts: async (token) => {

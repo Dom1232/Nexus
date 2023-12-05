@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser');
 const compress = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
-const Template = require('./../template.js');
 const userRoutes = require('./routes/user.routes.js');
 const authRoutes = require('./routes/auth.routes.js');
 const postRoutes = require('./routes/posts.routes.js');
@@ -13,7 +12,7 @@ const path = require('path');
 
 const app = express();
 const CURRENT_WORKING_DIR = process.cwd();
-app.use(cors);
+app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
 
 //...
 app.use(express.static(path.join(CURRENT_WORKING_DIR, 'dist/app')));
