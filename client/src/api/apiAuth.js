@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
 
 export default {
   signout: async () => {
     try {
-      let response = await axios.get(`${API_URL}/auth/signOut`);
+      let response = await axios.get(`/auth/signOut`);
       console.log(response.data);
       } catch(err) { 
       console.log(err)
@@ -14,7 +13,7 @@ export default {
 
   decodeToken: async (token) => {
     try {
-      let response = await axios.post(`${API_URL}/auth/decode`, {token}, {
+      let response = await axios.post(`/auth/decode`, {token}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

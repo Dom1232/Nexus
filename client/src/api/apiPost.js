@@ -1,11 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
-
 export default {
     getAllPosts: async (token) => {
       try {
-        const response = await axios.get(`${API_URL}/posts/postlist`, {
+        const response = await axios.get(`/posts/postlist`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -19,7 +17,7 @@ export default {
 
     makePost: async (token, poster, body) => {
         try {
-          await axios.post(`${API_URL}/posts/postmake`, {poster, body}, {
+          await axios.post(`/posts/postmake`, {poster, body}, {
               headers: {
                   Authorization: `Bearer ${token}`,
               },
@@ -32,7 +30,7 @@ export default {
 
     deletePost: async (token, userId, postId) => {
         try {
-            await axios.delete(`${API_URL}/posts/postdelete/${postId}/${userId}`, {
+            await axios.delete(`/posts/postdelete/${postId}/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -45,7 +43,7 @@ export default {
 
     getPostDetails: async (token, id) => {
       try {
-          const response = await axios.get(`${API_URL}/posts/post/${id}`, {
+          const response = await axios.get(`/posts/post/${id}`, {
           headers: {
               Authorization: `Bearer ${token}`,
           },
@@ -59,7 +57,7 @@ export default {
 
     addComment: async (token, postID, poster, body) => {
       try {
-        await axios.post(`${API_URL}/comment/${postID}/comments`, {poster, body}, {
+        await axios.post(`/comment/${postID}/comments`, {poster, body}, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -72,7 +70,7 @@ export default {
 
     deleteComment: async (token, userId, commentId) => {
       try {
-          await axios.delete(`${API_URL}/comment/commentdelete/${commentId}/${userId}`, {
+          await axios.delete(`/comment/commentdelete/${commentId}/${userId}`, {
           headers: {
               Authorization: `Bearer ${token}`,
           },
@@ -85,7 +83,7 @@ export default {
 
     getPostsByUser: async (token, userId) => {
       try {
-        const response = await axios.get(`${API_URL}/posts/userposts/${userId}`, {
+        const response = await axios.get(`/posts/userposts/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
