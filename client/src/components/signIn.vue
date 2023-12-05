@@ -37,7 +37,7 @@ import axios from 'axios';
     async signIn() {
         //Leaving this here instead of an api file as I spent 8 hours editing to find out it always worked and I put the wrong email. I'm not breaking it again
       try {
-        const response = await axios.post('http://localhost:3000/auth/signin', {
+        const response = await axios.post('/auth/signin', {
             email: this.email,
             password: this.password,
         }, {
