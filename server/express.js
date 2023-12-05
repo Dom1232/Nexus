@@ -12,7 +12,7 @@ const path = require('path');
 
 const app = express();
 const CURRENT_WORKING_DIR = process.cwd();
-app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
+app.use(cors);
 
 //...
 app.use(express.static(path.join(CURRENT_WORKING_DIR, 'dist/app')));
