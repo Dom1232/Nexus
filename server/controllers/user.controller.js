@@ -78,6 +78,7 @@ exports.deleteUserById = async (req, res) => {
     const userId = req.params.userId;
 
     const userPosts = await Post.find({ poster: userId });
+    const userComments = await Comment.find({ poster: userId });
 
     for (const post of userPosts) {
       await Comment.deleteMany({ _id: { $in: post.comments } });
@@ -86,6 +87,17 @@ exports.deleteUserById = async (req, res) => {
 
     await Comment.deleteMany({ poster: userId });
     await Post.deleteMany({ poster: userId });
+    
+    for (const comment of userComments) {
+      console.log(comment)
+      const post = await Post.findOne({ comments: comment._id });
+        if (!post) {
+          return res.status(404).json({ message: 'Post not found' });
+        }
+
+        post.comments = post.comments.filter(commentId => commentId.toString() !== comment._id.toString());
+        await post.save();
+    }
 
     const deletedUser = await User.findByIdAndDelete(userId);
     if (!deletedUser) {
