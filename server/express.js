@@ -14,11 +14,9 @@ const path = require('path');
 const app = express();
 const CURRENT_WORKING_DIR = process.cwd();
 app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
-app.get('/', (req, res) => {
-  res.status(200).send(Template());
-});
+
 //...
-app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist/app')));
+app.use(express.static(path.join(CURRENT_WORKING_DIR, 'dist/app')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
