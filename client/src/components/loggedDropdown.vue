@@ -38,7 +38,7 @@
   <style scoped>
   
   button {
-    background-color: #333;
+    background-color: rgb(109, 7, 128);
     color: white;
     border: none;
     padding: 8px;

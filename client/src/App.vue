@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav>
+    <nav class="navbar">
       <dropdown v-if="!isAuthenticated"></dropdown>
       <router-link v-if="!isAuthenticated" to="/signup" :class="{ 'active-link': isRouteActive(!isAuthenticated ? '/signup' : '/') }">Sign Up</router-link>
       <router-link v-if="!isAuthenticated" to="/signin" :class="{ 'active-link': isRouteActive(!isAuthenticated ? '/signin' : '/timeline') }">Sign In</router-link>
@@ -89,5 +89,9 @@ body {
 
 .active-link {
   color: red;
+}
+
+.navbar {
+  background-color: rgb(109, 7, 128);
 }
 </style>
