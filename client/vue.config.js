@@ -6,7 +6,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   outputDir: '../dist/app',
 
-  server: {
+  devServer: {
     proxy: {
       '/api': {
         target: `http://localhost:${PORT}`,
