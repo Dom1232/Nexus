@@ -1,6 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
 
-const { PORT = 3000 } = process.env;
+const { PORT = 10000 } = process.env;
 
 module.exports = defineConfig({
   transpileDependencies: true,
