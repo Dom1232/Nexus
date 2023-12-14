@@ -10,7 +10,7 @@
         <input type="email" id="email" v-model="userData.email" required>
 
         <label for="password">Password:</label>
-        <input type="text" id="password" v-model="userData.password" required>
+        <input type="password" id="password" v-model="userData.password" required>
 
         <router-link to="/">
           <button>Cancel</button>

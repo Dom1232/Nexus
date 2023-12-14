@@ -7,7 +7,7 @@
             <br />
         
             <label>Password:</label>
-            <input v-model="password" required/>
+            <input v-model="password" type="password" required/>
             <br />
             <button>Sign In</button>
             <router-link to="/">
